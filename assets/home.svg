@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="home">
+  <symbol id="c" viewBox="-24 -24 48 48">
+    <path fill="none" d="M-24-24h48v48h-48z"></path>
+  </symbol>
+  <path fill="#3854bd" d="M15.6 3.9h3v6h-3z" class="color3d5a80 svgShape"></path>
+  <path fill="#a24dee" d="M19.2 4.1H15c-.1 0-.1-.1-.1-.1v-.9c0-.1.1-.1.1-.1h4.2c.1 0 .1.1.1.1V4c0 .1 0 .1-.1.1z" class="coloree6c4d svgShape"></path>
+  <path fill="#a365db" d="M18.1 22h-12c-.3 0-.5-.2-.5-.5V12h13v9.5c0 .3-.2.5-.5.5z" class="color98c1d9 svgShape"></path>
+  <path fill="#a24dee" d="m11.2 2.3-8.1 8.9c-.3.3 0 .8.4.8h16.9c.5 0 .7-.5.4-.8l-8.1-8.9c-.3-.5-1.1-.5-1.5 0z" class="coloree6c4d svgShape"></path>
+  <path fill="#3854bd" d="M10.1 16h4v6h-4z" class="color3d5a80 svgShape"></path>
+  <circle cx="12" cy="8.1" r="2" fill="#f5f5f5" class="colorf5f5f5 svgShape"></circle>
+</svg>

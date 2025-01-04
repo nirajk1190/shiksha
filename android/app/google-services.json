@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "947921445422",
+    "project_id": "shiksha-4f524",
+    "storage_bucket": "shiksha-4f524.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:947921445422:android:f7b488f3a003bd53c8b5bf",
+        "android_client_info": {
+          "package_name": "com.shiksha"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHY0CCN6uRGQpzr4VmSiVfGmKyzE4jzrQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
