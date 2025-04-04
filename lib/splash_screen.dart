@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:shiksha/util/shared_preferences_utils.dart';
 import 'package:shiksha/welcome_screen.dart';
 
-import 'login.dart';
+import 'student/student_login.dart';
 
 
 class SplashScreen extends StatefulWidget {

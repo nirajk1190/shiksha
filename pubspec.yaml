@@ -121,6 +121,7 @@ flutter:
     - assets/science.svg
     - assets/growth.png
     - assets/practice.png
+    - assets/class.png
     - assets/delete_account.png
     - assets/chem.jpeg
     - assets/solar.jpg

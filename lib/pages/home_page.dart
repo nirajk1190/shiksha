@@ -4,7 +4,6 @@ import 'package:shiksha/util/ColorSys.dart';
 
 import '../model/category_model.dart';
 import '../model/topic_model.dart';
-import 'image_slider.dart';
 
 class SectionModel {
   final String name;
@@ -102,98 +101,110 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child:SingleChildScrollView(
+      body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              SizedBox(height: 30.0), // Top margin
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+              Stack(
+                clipBehavior: Clip.none,
                 children: [
-                  GestureDetector(
-                    onTap: () {
-                      // Profile Navigation can be implemented here
-                    },
-                    child: ClipOval(
-                      child: Image.asset(
-                        'assets/hulk.jpg',
-                        height: 40,
-                        width: 40,
-                        fit: BoxFit.cover,
+                  const SizedBox(height: 16),
+                  Align(
+                    alignment: Alignment.topCenter,
+                    child: Container(
+                      height: 100,
+                      width: double.infinity,
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color(0xFF3854BD), Color(0xFFA365DB)
+                          ],
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          bottomRight: Radius.circular(20),
+                        ),
+                      ),
+                      child: Padding(
+                        padding:
+                            const EdgeInsets.only(top: 38, left: 18, right: 18),
+                        child:  Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                // Profile Navigation can be implemented here
+                              },
+                              child: ClipOval(
+                                child: Image.asset(
+                                  'assets/hulk.jpg',
+                                  height: 40,
+                                  width: 40,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+
+                            const SizedBox(width: 10),
+                            Text(
+                              'Welcome',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontFamily: 'OpenSans',
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-
-                  const SizedBox(width: 10),
-                  Text(
-                    'Welcome',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontFamily: 'OpenSans',
-                      fontWeight: FontWeight.w600,
+                ],
+              ),
+              SizedBox(height: 20.0),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  children: [
+                    Container(
+                      height: 40,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: subjects.length,
+                        itemBuilder: (context, index) {
+                          final category = subjects[index];
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                // Deselect all categories and then select the clicked one
+                                for (var cat in subjects) {
+                                  cat.isSelected = false;
+                                }
+                                category.isSelected = true; // Select the clicked category
+                              });
+                            },
+                            child: _buildButton(category.name, isSelected: category.isSelected),
+                          );
+                        },
+                      ),
                     ),
-                  ),
-                  Spacer(),
-                  IconButton(
-                    icon: Icon(Icons.notifications,color: ColorSys.primary),
-                    onPressed: () {
-                      // Refresh functionality
-                    },
-                  ),
-                ],
-              ),
-              SizedBox(height: 20.0),
-              ImageSliderWithDots(
-                images: [
-                  'assets/earth.jpg',
-                  'assets/solar.jpg',
-                  'assets/structure.jpg',
-                ],
-                titles: [
-                  'The Earth',
-                  'The Solar System',
-                  'The Structure of Earth',
-                ],
-              ),
-              SizedBox(height: 20.0),
-
-              // Horizontal ListView of Subjects
-              Container(
-                height: 40,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: subjects.length,
-                  itemBuilder: (context, index) {
-                    final category = subjects[index];
-                    return GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          // Deselect all categories and then select the clicked one
-                          for (var cat in subjects) {
-                            cat.isSelected = false;
-                          }
-                          category.isSelected = true; // Select the clicked category
-                        });
-                      },
-                      child: _buildButton(category.name, isSelected: category.isSelected),
-                    );
-                  },
+                    SizedBox(height: 30.0),
+                    // Display Sections and Topics when a subject is selected
+                    if (subjects.any((subject) => subject.isSelected))
+                      ...subjects
+                          .where((subject) => subject.isSelected)
+                          .map((subject) => _buildSections(subject.sections)),
+                  ],
                 ),
-              ),
-              SizedBox(height: 30.0),
-              // Display Sections and Topics when a subject is selected
-              if (subjects.any((subject) => subject.isSelected))
-                ...subjects
-                    .where((subject) => subject.isSelected)
-                    .map((subject) => _buildSections(subject.sections)),
+              )
+              // Horizontal ListView of Subjects
+
             ],
           ),
         )
-
-      ),
     );
   }
 
